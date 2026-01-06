@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>Introduction | 游鏡馨</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --page-bg-dark-1: #020617;
+      --page-bg-dark-2: #0b1220;
+      --page-bg-dark-3: #1f2937;
+
+      --card-bg: #fafafa;
+      --card-bg-hover: #ffffff;
+      --accent: #f59e0b;
+      --accent-soft: #fef3c7;
+      --text-main: #f9fafb;
+      --text-sub: #9ca3af;
+      --text-strong: #111827;
+      --border-soft: #e5e7eb;
+      --border-strong: #9ca3af;
+      --radius-lg: 24px;
+      --radius-md: 14px;
+      --shadow-soft: 0 14px 32px rgba(15, 23, 42, 0.28);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, "Noto Sans TC","PingFang TC", sans-serif;
+      background:
+        radial-gradient(circle at 0 0, #1f2937 0, transparent 45%),
+        radial-gradient(circle at 100% 100%, #020617 0, transparent 55%),
+        linear-gradient(180deg, var(--page-bg-dark-2), var(--page-bg-dark-1));
+      color: var(--text-main);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body.has-loader {
+      overflow: hidden;
+    }
+
+    a { color: #60a5fa; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .page {
+      max-width: 1120px;
+      margin: 46px auto 80px;
+      padding: 0 20px;
+    }
+
+    /* 共通卡片 hover 效果（區塊本體） */
+    .card-hover {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-soft);
+      transition:
+        background 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.18s ease,
+        border-color 0.25s ease;
+      color: var(--text-strong);
+    }
+
+    .card-hover:hover {
+      background: var(--card-bg-hover);
+      box-shadow: var(--shadow-soft);
+      border-color: var(--border-strong);
+      transform: translateY(-2px);
+    }
+
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 40px;
+      padding: 30px 32px;
+      margin-bottom: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 100% 0, rgba(37, 99, 235, 0.12) 0, transparent 55%),
+        radial-gradient(circle at 0 100%, rgba(245, 158, 11, 0.14) 0, transparent 55%);
+      opacity: 0.7;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      display: contents;
+    }
+
+    .hero-photo {
+      width: 210px;
+      height: 210px;
+      border-radius: 999px;
+      border: 4px solid #ffffff;
+      background-image: url("00182_.png");
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 18px 40px rgba(15,23,42,.5);
+      margin: auto;
+    }
+
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .hero-name {
+      font-size: 28px;
+      letter-spacing: 0.18em;
+      color: #111827;
+    }
+
+    .hero-meta {
+      margin-top: 4px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 14px;
+    }
+
+    .hero-meta span {
+      display:inline-flex;
+      align-items:center;
+      padding:4px 11px;
+      border-radius:999px;
+      border:1px solid var(--border-soft);
+      background:#ffffffee;
+      color: #6b7280;
+    }
+
+    .hero-title {
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    .hero-desc {
+      font-size: 14px;
+      color: #4b5563;
+    }
+
+    .hero-chip-row {
+      margin-top: 4px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+
+    .hero-chip{
+      display:inline-flex;
+      padding:4px 11px;
+      border-radius:999px;
+      border:1px solid rgba(249, 168, 37, .55);
+      background: var(--accent-soft);
+      color:#92400e;
+      font-size:12px;
+      letter-spacing: .03em;
+    }
+
+    /* SECTION 通用 */
+    .section{
+      padding:22px 24px 24px;
+      margin-bottom:22px;
+    }
+
+    .section-header {
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:12px;
+      margin-bottom:12px;
+    }
+
+    .section-title{
+      letter-spacing:.16em;
+      color:#111827;
+      font-size:13px;
+    }
+
+    .section-title span.en {
+      color: #6b7280;
+      margin-left:6px;
+    }
+
+    .section-subtitle{
+      color:#9ca3af;
+      font-size:12px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    /* PROFILE 文字 */
+    .profile-text{
+      font-size:14px;
+      color: #111827;
+      text-align:justify;
+    }
+
+    /* SKILLS */
+    .core-list{
+      list-style:none;
+      margin-top:8px;
+      text-align:center;
+    }
+
+    .core-list li{
+      background:#f3f4ff;
+      border:1px solid rgba(191,219,254,.9);
+      padding:7px 12px;
+      border-radius:999px;
+      display:inline-block;
+      margin:4px;
+      font-size:13px;
+      color:#374151;
+    }
+
+    /* WORK GRID */
+    .works-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+      margin-top:4px;
+    }
+
+    .work-card-link{
+      display:block;
+      text-decoration:none;
+      color:inherit;
+    }
+
+    /* 作品專案 hover 時不要顯示底線 */
+    .work-card-link:hover,
+    .work-card-link:hover .work-link,
+    .work-card-link:hover .work-link a {
+      text-decoration:none;
+    }
+
+    .work-card{
+      border-radius:var(--radius-md);
+      border:1px solid var(--border-soft);
+      padding:16px 16px 18px;
+      transition:
+        background 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.18s ease,
+        border-color 0.25s ease;
+    }
+
+    .work-card:hover{
+      box-shadow: var(--shadow-soft);
+      border-color: var(--border-strong);
+      transform: translateY(-2px);
+    }
+
+    /* 不同專案的底色與 hover 顏色 */
+    .work-card-bird{
+      background:#ecfdf5;   /* 改成綠系底色 */
+    }
+    .work-card-bird:hover{
+      background:#d1fae5;   /* hover 時綠色再深一點 */
+    }
+
+    .work-card-hotel{
+      background:#fff7ed;
+    }
+    .work-card-hotel:hover{
+      background:#ffedd5;
+    }
+
+    .work-label {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #6b7280;
+      opacity: 0.9;
+    }
+
+    .work-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-top: 4px;
+      color:#111827;
+    }
+
+    .work-desc {
+      font-size: 13px;
+      color: #4b5563;
+      margin-top: 6px;
+    }
+
+    .work-meta {
+      font-size: 12px;
+      color: #6b7280;
+      margin-top: 6px;
+    }
+
+    .work-link {
+      margin-top: 10px;
+      font-size: 12px;
+      color:#1d4ed8;
+    }
+
+    /* IG */
+    .ig-preview{
+      margin-top:14px;
+      padding:10px;
+      border-radius:var(--radius-md);
+      border:1px solid var(--border-soft);
+      background:#ffffff;
+      transition:
+        background 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.18s ease,
+        border-color 0.25s ease;
+    }
+
+    .ig-preview:hover{
+      background:#ffffff;
+      box-shadow: var(--shadow-soft);
+      border-color: var(--border-strong);
+      transform: translateY(-2px);
+    }
+
+    .ig-text {
+      font-size:14px;
+      color:#4b5563;
+    }
+
+    .footer{
+      text-align:center;
+      color:#9ca3af;
+      font-size:11px;
+      margin-top:18px;
+    }
+
+    /* ===== 進站百葉窗 Loader ===== */
+
+    #loader-overlay {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0, #1f2937 0, #020617 60%);
+      z-index: 9999;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      pointer-events: auto;
+      overflow: hidden;
+      transition: opacity 0.6s ease;
+    }
+
+    #loader-overlay.is-fading {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .loader-stripes {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .loader-stripe {
+      flex: 1;
+      background: linear-gradient(90deg, #020617, #0b1220);
+      border-bottom: 1px solid rgba(15,23,42,0.9);
+      transform-origin: top;
+      animation: blindOpen 2.3s ease-in-out forwards;
+      animation-delay: var(--delay);
+    }
+
+    .loader-stripe:nth-child(odd) {
+      background: linear-gradient(90deg, #020617, #111827);
+    }
+
+    .loader-center-mark {
+      position: absolute;
+      inset: 0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      pointer-events:none;
+      font-size:12px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:#e5e7eb;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      opacity:0.85;
+    }
+
+    @keyframes blindOpen {
+      0%   { transform: scaleY(1); }
+      100% { transform: scaleY(0); }
+    }
+
+    @media(max-width:820px){
+      .hero{grid-template-columns:1fr; padding:22px 18px;}
+      .works-grid{grid-template-columns:1fr;}
+    }
+
+    @media(max-width:520px){
+      .hero-photo{width:180px;height:180px;}
+    }
+  </style>
+</head>
+
+<body class="has-loader">
+
+  <!-- 進站百葉窗 Loader -->
+  <div id="loader-overlay">
+    <div class="loader-stripes">
+      <!-- 8 條百葉窗條，使用不同 delay 產生漸層開啟效果 -->
+      <div class="loader-stripe" style="--delay:0s;"></div>
+      <div class="loader-stripe" style="--delay:0.06s;"></div>
+      <div class="loader-stripe" style="--delay:0.12s;"></div>
+      <div class="loader-stripe" style="--delay:0.18s;"></div>
+      <div class="loader-stripe" style="--delay:0.24s;"></div>
+      <div class="loader-stripe" style="--delay:0.30s;"></div>
+      <div class="loader-stripe" style="--delay:0.36s;"></div>
+      <div class="loader-stripe" style="--delay:0.42s;"></div>
+    </div>
+    <div class="loader-center-mark">
+      INTRODUCTION · YU JING-XIN · AI × DESIGN × SYSTEM
+    </div>
+  </div>
+
+  <div class="page">
+
+    <!-- HERO -->
+    <header class="hero card-hover">
+      <div class="hero-inner">
+        <div class="hero-photo"></div>
+
+        <div class="hero-text">
+          <div>
+            <div class="hero-name">游 鏡 馨</div>
+
+            <div class="hero-meta">
+              <span>1989 / 男</span>
+              <span>醒吾科技大學 行銷與流通管理系 碩士</span>
+            </div>
+          </div>
+
+          <div>
+            <p class="hero-title">跨設計、行政與 AI 應用的專案整合者</p>
+            <p class="hero-desc">
+              現階段聚焦「AI 協作流程設計 × Instagram 視覺經營 × 資訊工具與系統應用」，
+              以結構化思維把抽象需求轉成可執行的流程與工具。
+            </p>
+          </div>
+
+          <div class="hero-chip-row">
+            <span class="hero-chip">AI 協作工具開發</span>
+            <span class="hero-chip">IG 主題帳號經營</span>
+            <span class="hero-chip">行政企劃與專案管理</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- PROFILE -->
+    <section class="section card-hover">
+      <div class="section-header">
+        <div class="section-title">
+          個人簡介<span class="en">PROFILE</span>
+        </div>
+        <div class="section-subtitle">INTRODUCTION</div>
+      </div>
+
+      <p class="profile-text">
+具備 Adobe Photoshop、Illustrator、InDesign 等電腦平面設計工具使用經驗，過去曾參與多項行政企劃與專案管理工作。於宜蘭大學有機發展中心服務期間，負責資訊平台維運與專案執行，也參與地方創生及環境教育推廣，同時取得行政院環保署環境教育人員認證。其後轉任觀光工廠團體業務，負責客源開發、報價設計、行程安排與顧客關係維護，培養了跨部門協作及商務應用思維。
+<br><br>
+在職同時完成行銷與流通管理碩士學位，建立起以資料與市場觀察為核心的決策流程：
+<br><br>
+辨識問題 → 蒐集資訊 → 行為洞察 → 擬定策略 → 成效回饋與優化。
+<br><br>
+近年來，我投入 AI 應用與自媒體經營，透過 AI 協作完成多項工具型專案，如前端業務報價系統與資料整合型網站。同時經營主題式 Instagram 帳號，實際操作內容規劃、流量測試與受眾分析。雖非工程背景，但能以需求方角度定義流程與邏輯，由 AI 進行技術落實，形成 人類策略設計 × AI 技術產能 的協作開發模式。
+<br><br>
+同時經營主題式 Instagram 帳號，實際操作內容規劃、版面節奏與受眾分析，將平台數據作為調整視覺策略與文字風格的依據，持續測試「設計 × 行為 × 工具」之間的關係。
+      </p>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="section card-hover">
+      <div class="section-header">
+        <div class="section-title">
+          核心能力<span class="en">CORE SKILLS</span>
+        </div>
+        <div class="section-subtitle">CAPABILITIES</div>
+      </div>
+
+      <ul class="core-list">
+        <li>市場洞察與資料判讀</li>
+        <li>將需求轉化為工具或流程</li>
+        <li>使用者體驗與流程設計</li>
+        <li>行政與商務情境理解</li>
+        <li>AI 圖像生成與提示詞設計</li>
+      </ul>
+    </section>
+
+    <!-- WORKS -->
+    <section class="section card-hover">
+      <div class="section-header">
+        <div class="section-title">
+          作品與專案<span class="en">WORKS</span>
+        </div>
+        <div class="section-subtitle">SELECTED PROJECTS</div>
+      </div>
+
+      <div class="works-grid">
+
+        <!-- 好鳥網 -->
+        <a class="work-card-link"
+           href="https://sinba7474.github.io/taiwan-bird-map/"
+           target="_blank" rel="noopener">
+          <article class="work-card work-card-bird">
+            <div class="work-label">WEB / DATA VISUALIZATION</div>
+            <h3 class="work-title">好鳥網：野鳥監測資料視覺化平台</h3>
+
+            <p class="work-desc">
+              串接全球 eBird 資料庫與自動化地圖技術，將野鳥紀錄投射至互動式地圖。
+              透過 Google Maps 介面呈現觀測差異，協助初學者迅速理解「有哪些鳥出現過」，
+              降低進入門檻，同時滿足進階玩家對資料精細度的需求。
+            </p>
+
+            <p class="work-meta">
+              角色：系統企劃／資訊架構設計<br>
+              功能：篩選介面設計、地圖視覺風格規劃、文字與圖例說明
+            </p>
+
+            <p class="work-link">
+              ➜ 造訪好鳥網 demo 網站
+            </p>
+          </article>
+        </a>
+
+        <!-- 報價系統 -->
+        <a class="work-card-link"
+           href="https://hotel-quote-system.vercel.app/"
+           target="_blank" rel="noopener">
+          <article class="work-card work-card-hotel">
+            <div class="work-label">WEB APP / TOOL DESIGN</div>
+            <h3 class="work-title">旅宿業團體報價系統</h3>
+
+            <p class="work-desc">
+              針對實際櫃檯與團體業務操作情境設計的 Web App，將房型、會議室與專案價等資訊整合，
+              提供 OTA 日曆選取、即時調整 JSON 報價表、匯出 PDF 報價單等功能，
+              讓原本依賴 Excel 的流程轉為視覺化操作，降低新人訓練成本並提升回覆效率。
+            </p>
+
+            <p class="work-meta">
+              角色：產品企劃／介面線框圖／需求彙整<br>
+              功能：動態報價邏輯設計、RWD 介面規劃、操作流程示意
+            </p>
+
+            <p class="work-link">
+              ➜ 開啟報價系統 demo 網站
+            </p>
+          </article>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- INSTAGRAM -->
+    <section class="section card-hover">
+      <div class="section-header">
+        <div class="section-title">
+          社群經營<span class="en">INSTAGRAM</span>
+        </div>
+        <div class="section-subtitle">ART NOUVEAU CATS SERIES</div>
+      </div>
+
+      <p class="ig-text">
+        帳號：
+        <a href="https://www.instagram.com/meow.nouveau/" target="_blank">
+          @meow.nouveau
+        </a>
+        — 以「新藝術風格 × 水彩貓」為主題的實驗帳號，透過色彩情緒、排版節奏與互動數據，
+        測試不同視覺語言在社群上的表現。
+      </p>
+
+      <div class="ig-preview">
+        <a href="https://www.instagram.com/meow.nouveau/"
+           target="_blank" rel="noopener">
+          <img src="52Instagram.jpg"
+               style="width:100%;border-radius:12px;display:block;"
+               alt="Instagram preview">
+        </a>
+      </div>
+    </section>
+
+    <div class="footer">
+      © 2025 游鏡馨 — Introduction. 作品與資料僅供應徵與合作提案使用。
+    </div>
+
+  </div>
+
+  <!-- Loader 控制腳本 -->
+  <script>
+    window.addEventListener('load', function () {
+      const overlay = document.getElementById('loader-overlay');
+      const totalDuration = 2800; // 毫秒
+      setTimeout(() => {
+        overlay.classList.add('is-fading');
+        document.body.classList.remove('has-loader');
+        setTimeout(() => {
+          overlay.remove();
+        }, 700);
+      }, totalDuration);
+    });
+  </script>
+</body>
+</html>
